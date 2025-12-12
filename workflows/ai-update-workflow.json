@@ -1,0 +1,136 @@
+{
+  "name": "Prometheus AI Tutor - Agentic Updates",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "prometheus-update",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "content": "You are a code assistant for the Prometheus AI Tutor project. Generate the exact code changes needed based on the request. Output only the modified code section, no explanations."
+            },
+            {
+              "content": "=Request: {{ $json.body.instruction }}\n\nCurrent config:\n{{ $json.body.currentConfig }}\n\nGenerate the updated code/config."
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.3
+        }
+      },
+      "id": "openai-generate",
+      "name": "AI Generate Changes",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "owner": "={{ $json.body.github_owner }}",
+        "repository": "prometheus-ai-tutor",
+        "filePath": "={{ $json.body.file_path || 'config/tutor.config.json' }}",
+        "commitMessage": "=AI Update: {{ $json.body.instruction }}",
+        "fileContent": "={{ $node['AI Generate Changes'].json.message.content }}"
+      },
+      "id": "github-commit",
+      "name": "GitHub Commit",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [750, 300]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.vercel.com/v1/integrations/deploy/{{ $json.body.vercel_hook }}",
+        "method": "POST",
+        "options": {}
+      },
+      "id": "vercel-deploy",
+      "name": "Trigger Vercel Deploy",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1000, 300]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "status",
+              "value": "success"
+            },
+            {
+              "name": "message",
+              "value": "=Update deployed: {{ $json.body.instruction }}"
+            }
+          ]
+        }
+      },
+      "id": "response",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [1250, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Generate Changes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Generate Changes": {
+      "main": [
+        [
+          {
+            "node": "GitHub Commit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub Commit": {
+      "main": [
+        [
+          {
+            "node": "Trigger Vercel Deploy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger Vercel Deploy": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

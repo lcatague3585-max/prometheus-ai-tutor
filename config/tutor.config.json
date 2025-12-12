@@ -1,0 +1,173 @@
+{
+  "version": "3.0.0",
+  "lastUpdated": "2024-12-12",
+  "app": {
+    "name": "Prometheus AI Tutor",
+    "institution": "Rabdan Academy",
+    "defaultLanguage": "en",
+    "defaultModule": "cyber"
+  },
+  "ai": {
+    "model": "gpt-4o-mini",
+    "maxTokens": 1000,
+    "temperature": 0.7,
+    "systemPromptTemplate": "You are an expert {module} instructor at Rabdan Academy..."
+  },
+  "voice": {
+    "enabled": true,
+    "tts": {
+      "arabic": {
+        "lang": "ar-SA",
+        "rate": 1.0,
+        "pitch": 1.0,
+        "preferredVoices": ["ar-SA", "ar-EG", "ar-XA", "ar"]
+      },
+      "english": {
+        "lang": "en-GB",
+        "rate": 0.95,
+        "pitch": 1.0,
+        "preferredVoices": ["David", "James", "Daniel"]
+      }
+    },
+    "stt": {
+      "arabic": "ar-AE",
+      "english": "en-US"
+    }
+  },
+  "modules": {
+    "cyber": {
+      "id": "cyber",
+      "nameEn": "Cybersecurity Response Training",
+      "nameAr": "التدريب على الاستجابة للأمن السيبراني",
+      "icon": "🛡️",
+      "keywords": ["cyber", "security", "hack", "malware", "phishing", "breach", "firewall", "encryption"],
+      "topics": [
+        {
+          "id": "intro",
+          "nameEn": "Introduction to Cybersecurity",
+          "nameAr": "مقدمة في الأمن السيبراني"
+        },
+        {
+          "id": "threats",
+          "nameEn": "Common Cyber Threats",
+          "nameAr": "التهديدات السيبرانية الشائعة"
+        },
+        {
+          "id": "incident",
+          "nameEn": "Incident Response",
+          "nameAr": "الاستجابة للحوادث"
+        },
+        {
+          "id": "soc",
+          "nameEn": "SOC Operations",
+          "nameAr": "عمليات مركز العمليات الأمنية"
+        }
+      ]
+    },
+    "crisis": {
+      "id": "crisis",
+      "nameEn": "Crisis Management",
+      "nameAr": "إدارة الأزمات",
+      "icon": "⚠️",
+      "keywords": ["crisis", "emergency", "disaster", "management", "response", "recovery"],
+      "topics": [
+        {
+          "id": "intro",
+          "nameEn": "Crisis Management Fundamentals",
+          "nameAr": "أساسيات إدارة الأزمات"
+        },
+        {
+          "id": "planning",
+          "nameEn": "Crisis Planning",
+          "nameAr": "التخطيط للأزمات"
+        },
+        {
+          "id": "communication",
+          "nameEn": "Crisis Communication",
+          "nameAr": "التواصل أثناء الأزمات"
+        },
+        {
+          "id": "recovery",
+          "nameEn": "Recovery Operations",
+          "nameAr": "عمليات التعافي"
+        }
+      ]
+    },
+    "emergency": {
+      "id": "emergency",
+      "nameEn": "Emergency Response",
+      "nameAr": "الاستجابة للطوارئ",
+      "icon": "🚨",
+      "keywords": ["emergency", "first responder", "rescue", "evacuation", "medical"],
+      "topics": [
+        {
+          "id": "intro",
+          "nameEn": "Emergency Response Basics",
+          "nameAr": "أساسيات الاستجابة للطوارئ"
+        },
+        {
+          "id": "coordination",
+          "nameEn": "Multi-Agency Coordination",
+          "nameAr": "التنسيق متعدد الوكالات"
+        },
+        {
+          "id": "medical",
+          "nameEn": "Medical Emergency Response",
+          "nameAr": "الاستجابة للطوارئ الطبية"
+        }
+      ]
+    },
+    "leadership": {
+      "id": "leadership",
+      "nameEn": "Leadership & Decision Making",
+      "nameAr": "القيادة واتخاذ القرار",
+      "icon": "👔",
+      "keywords": ["leadership", "decision", "team", "strategy", "management"],
+      "topics": [
+        {
+          "id": "intro",
+          "nameEn": "Leadership Fundamentals",
+          "nameAr": "أساسيات القيادة"
+        },
+        {
+          "id": "decision",
+          "nameEn": "Decision Making Under Pressure",
+          "nameAr": "اتخاذ القرار تحت الضغط"
+        },
+        {
+          "id": "team",
+          "nameEn": "Team Building",
+          "nameAr": "بناء الفريق"
+        }
+      ]
+    }
+  },
+  "ui": {
+    "translations": {
+      "en": {
+        "welcome": "Welcome to Prometheus AI Tutor",
+        "selectModule": "Select a training module to begin",
+        "askQuestion": "Ask a question or select a topic...",
+        "voiceOn": "🔊 Voice On",
+        "voiceOff": "🔇 Voice Off"
+      },
+      "ar": {
+        "welcome": "مرحباً بك في معلم بروميثيوس الذكي",
+        "selectModule": "اختر وحدة تدريبية للبدء",
+        "askQuestion": "اطرح سؤالاً أو اختر موضوعاً...",
+        "voiceOn": "🔊 الصوت مفعل",
+        "voiceOff": "🔇 الصوت متوقف"
+      }
+    }
+  },
+  "updateInstructions": {
+    "description": "This configuration file can be updated by AI agents or manually",
+    "howToUpdate": [
+      "1. Modify this JSON file directly",
+      "2. Use n8n workflow to trigger updates",
+      "3. Ask Claude to update via GitHub API",
+      "4. Push changes to GitHub - Vercel auto-deploys"
+    ],
+    "aiPrompt": "To update this config, describe what you want to change and I will modify the appropriate section"
+  }
+}

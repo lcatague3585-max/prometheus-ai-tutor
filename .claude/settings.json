@@ -1,0 +1,85 @@
+{
+  "project": {
+    "name": "Prometheus AI Tutor",
+    "description": "Bilingual AI-powered tutoring system for Rabdan Academy professional training programs",
+    "version": "2.0.0"
+  },
+  "context": {
+    "overview": "This is an educational AI tutor application built as a single-file HTML application with embedded CSS and JavaScript. It serves training content for defense, security, and crisis management sectors at Rabdan Academy in Abu Dhabi, UAE.",
+    "tech_stack": [
+      "HTML5",
+      "CSS3 (embedded)",
+      "Vanilla JavaScript",
+      "Marked.js (Markdown parsing)",
+      "Highlight.js (code highlighting)",
+      "Google TTS API",
+      "Web Speech API"
+    ],
+    "key_features": [
+      "Bilingual English/Arabic with RTL support",
+      "AI chat integration (OpenAI, Anthropic, OpenRouter)",
+      "Interactive quiz system",
+      "Progress tracking with localStorage",
+      "Voice synthesis (male voices)",
+      "Offline fallback mode"
+    ]
+  },
+  "conventions": {
+    "styling": {
+      "primary_color": "#003366 (navy)",
+      "accent_color": "#B8860B (gold)",
+      "font_family": "Barlow, sans-serif",
+      "design_language": "Professional, clean, institutional"
+    },
+    "code_style": {
+      "javascript": "ES6+, no framework, vanilla JS",
+      "css": "Embedded in <style> tags, BEM-like naming",
+      "html": "Semantic HTML5 elements"
+    },
+    "naming": {
+      "functions": "camelCase",
+      "css_classes": "kebab-case",
+      "constants": "UPPER_SNAKE_CASE"
+    }
+  },
+  "important_files": {
+    "src/prometheus-ai-tutor-v2.html": "Main production application with all features",
+    "src/prometheus-ai-tutor-demo.html": "Simplified demo version",
+    "docs/": "Executive proposal and technical specification documents"
+  },
+  "development_guidelines": [
+    "Maintain single-file architecture for easy deployment",
+    "Always update translations object when adding UI text",
+    "Test both English and Arabic modes after changes",
+    "Preserve Rabdan Academy branding (navy/gold)",
+    "Ensure graceful degradation when API unavailable",
+    "Keep mobile responsiveness in all UI changes"
+  ],
+  "common_tasks": {
+    "add_module": "Add to modules array, update translations for both languages, update course outline",
+    "add_ui_text": "Add to translations.en and translations.ar objects",
+    "change_branding": "Update CSS variables at top of <style> section",
+    "add_quiz_questions": "Add to module's questions array with question, options, correct index"
+  },
+  "testing": {
+    "manual_checklist": [
+      "Toggle language and verify all text updates",
+      "Test voice synthesis in both languages",
+      "Complete a quiz and verify scoring",
+      "Test with API configured and without",
+      "Verify mobile layout on narrow viewport",
+      "Check RTL alignment in Arabic mode"
+    ]
+  },
+  "deployment": {
+    "method": "Static file hosting",
+    "options": [
+      "Direct file open in browser",
+      "GitHub Pages",
+      "Netlify",
+      "Vercel",
+      "Any static web server"
+    ],
+    "notes": "No build process required - single HTML file deployment"
+  }
+}

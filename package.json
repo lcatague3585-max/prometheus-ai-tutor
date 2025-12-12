@@ -1,0 +1,23 @@
+{
+  "name": "prometheus-ai-tutor",
+  "version": "3.0.0",
+  "description": "Prometheus AI Tutor - Intelligent Training System for Defense & Security",
+  "main": "public/index.html",
+  "scripts": {
+    "dev": "npx serve public",
+    "build": "echo 'Static site - no build required'",
+    "start": "npx serve public -l 3000"
+  },
+  "keywords": [
+    "ai-tutor",
+    "education",
+    "training",
+    "cybersecurity",
+    "crisis-management",
+    "bilingual",
+    "arabic",
+    "english"
+  ],
+  "author": "Rabdan Academy",
+  "license": "MIT"
+}
